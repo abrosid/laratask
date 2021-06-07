@@ -18,18 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/companies',function(){
-//     return CompanyResource::collection(Company::all());
-// });
-// Route::prefix('company')->group(function(){
-//     Route::get('/{id}', CompanyController::class, 'index');
-//     Route::post('/store', CompanyController::class, 'store');
-//     Route::put('/{id}', CompanyController::class, 'update');
-//     Route::delete('/{id}', CompanyController::class, 'destroy');
-
-// });
-
-// Route::get('/users',[UserController::class, 'index']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
