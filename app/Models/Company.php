@@ -11,6 +11,13 @@ class Company extends Model
 
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name', 'email', 'logo_url', 'website'];
+
+    /**
      * The attributes that should be visible in arrays.
      *
      * @var array

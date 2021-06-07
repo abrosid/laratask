@@ -2,9 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Http\Resources\UserReasource;
 use App\Models\Company;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CompanyFactory extends Factory

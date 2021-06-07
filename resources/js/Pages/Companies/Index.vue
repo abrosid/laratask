@@ -22,24 +22,36 @@
                 <th class="py-3 px-6 text-center">Email</th>
                 <th class="py-3 px-6 text-center">Website</th>
                 <th class="py-3 px-6 text-center">Users</th>
-                <th class="py-3 px-6 text-center">Actions</th>
+                <th class="py-3 px-6 text-center"></th>
               </tr>
             </thead>
             <tbody class="text-center">
               <tr v-for="item in items.data" :key="item.id" class="border-b">
                 <td class="py-3 px-6 text-left">
-                  <div class="mr-2">
-                    <img v-bind:src="item.logo_url" />
-                  </div>
-                  <span>{{ item.name }}</span>
+                  <inertia-link
+                    :href="route('companies.edit', item.id)"
+                    class="text-blue-500"
+                  >
+                    <div class="mr-2 float-left">
+                      <img v-bind:src="item.logo_url" />
+                    </div>
+                    <span>{{ item.name }}</span>
+                  </inertia-link>
                 </td>
                 <td>{{ item.email }}</td>
                 <td>{{ item.website }}</td>
                 <td>
                   {{ item.usersCount }}
-                  <!-- <div v-for="user in item.users" :key="user.id">
-                      {{ user.firstname }} {{ user.lastname }}
-                    </div> -->
+                </td>
+                <td>
+                  <button
+                    class="text-red-600 hover:underline"
+                    tabindex="-1"
+                    type="button"
+                    @click="destroy(item)"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -53,19 +65,29 @@
 
 <script>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated";
-import Pagination from '@/Components/Pagination';
+import Pagination from "@/Components/Pagination";
 
 export default {
   components: {
     BreezeAuthenticatedLayout,
-    Pagination
+    Pagination,
   },
-  
+
   props: {
     auth: Object,
     errors: Object,
     items: Object,
   },
-  
+  methods: {
+    destroy(company) {
+      if (
+        confirm(
+          "Are you sure you want to delete the copmpany: " + company.name + "?"
+        )
+      ) {
+        this.$inertia.delete(this.route("companies.destroy", company.id));
+      }
+    },
+  },
 };
 </script>

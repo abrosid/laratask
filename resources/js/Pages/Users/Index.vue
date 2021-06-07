@@ -7,33 +7,56 @@
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-          <div class="p-6 bg-white border-b border-gray-200">Users list</div>
+          <div class="p-6 bg-white border-b border-gray-200">
+            Users list
+            <inertia-link class="float-right" :href="route('users.create')">
+              Create a user
+            </inertia-link>
+          </div>
 
           <table class="w-full table-auto">
             <thead
               class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
             >
               <tr>
-                <th class="py-3 px-6 text-left">Firstname</th>
-                <th class="py-3 px-6 text-left">Lastname</th>
+                <th class="py-3 px-6 text-center">Name</th>
                 <th class="py-3 px-6 text-center">Email</th>
                 <th class="py-3 px-6 text-center">Phone</th>
                 <th class="py-3 px-6 text-center">Company</th>
-                <th class="py-3 px-6 text-center">Actions</th>
+                <th class="py-3 px-6 text-center"></th>
               </tr>
             </thead>
             <tbody class="text-center">
               <tr v-for="item in items.data" :key="item.id" class="border-b">
-                <td>{{ item.firstname }}</td>
-                <td>{{ item.lastname }}</td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.phone }}</td>
+                <td>
+                  <inertia-link
+                    :href="route('users.edit', item.id)"
+                    class="text-blue-500"
+                  >
+                    {{ item.firstname }} {{ item.lastname }}
+                  </inertia-link>
+                </td>
+                <td>
+                  {{ item.email }}
+                </td>
+                <td>
+                  {{ item.phone }}
+                </td>
                 <td>
                   <span v-if="item.company">
                     {{ item.company.name }}
                   </span>
                 </td>
-                <td></td>
+                <td>
+                  <button
+                    class="text-red-600 hover:underline"
+                    tabindex="-1"
+                    type="button"
+                    @click="destroy(item)"
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -46,17 +69,32 @@
 
 <script>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated";
-import Pagination from '@/Components/Pagination';
+import Pagination from "@/Components/Pagination";
 
 export default {
   components: {
     BreezeAuthenticatedLayout,
-    Pagination
+    Pagination,
   },
   props: {
     auth: Object,
     errors: Object,
     items: Object,
+  },
+  methods: {
+    destroy(user) {
+      if (
+        confirm(
+          "Are you sure you want to delete the user: " +
+            user.firstname +
+            " " +
+            user.lastname +
+            "?"
+        )
+      ) {
+        this.$inertia.delete(this.route("users.destroy", user.id));
+      }
+    },
   },
 };
 </script>
