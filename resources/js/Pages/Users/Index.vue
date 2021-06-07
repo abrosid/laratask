@@ -38,6 +38,7 @@
             </tbody>
           </table>
         </div>
+        <pagination class="mt-6" :links="items.meta.links" />
       </div>
     </div>
   </breeze-authenticated-layout>
@@ -45,10 +46,12 @@
 
 <script>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated";
+import Pagination from '@/Components/Pagination';
 
 export default {
   components: {
     BreezeAuthenticatedLayout,
+    Pagination
   },
   props: {
     auth: Object,

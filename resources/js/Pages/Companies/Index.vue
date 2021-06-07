@@ -45,6 +45,7 @@
             </tbody>
           </table>
         </div>
+        <pagination class="mt-6" :links="items.meta.links" />
       </div>
     </div>
   </breeze-authenticated-layout>
@@ -52,35 +53,19 @@
 
 <script>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated";
-import axios from "axios";
+import Pagination from '@/Components/Pagination';
 
 export default {
   components: {
     BreezeAuthenticatedLayout,
+    Pagination
   },
-  // data() {
-  //   return {
-  //     items: [],
-  //     loading: true,
-  //     errored: false,
-  //   };
-  // },
+  
   props: {
     auth: Object,
     errors: Object,
     items: Object,
   },
-  // mounted() {
-  //   axios
-  //     .get("http://localhost/api/companies")
-  //     .then((r) => {
-  //       this.items = r.data.data;
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       this.errored = true;
-  //     })
-  //     .finally(() => (this.loading = false));
-  // },
+  
 };
 </script>

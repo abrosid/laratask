@@ -20,7 +20,7 @@ class UserController extends Controller
     {
 
         return Inertia::render('Users/Index', [
-            'items' => UserReasource::collection(User::paginate(20))
+            'items' => UserReasource::collection(User::paginate(50))
         ]);
         
     }

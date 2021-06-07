@@ -18,7 +18,7 @@ class CompanyController extends Controller
     public function index()
     {
         return Inertia::render('Companies/Index', [
-            'items' =>CompanyResource::collection(Company::paginate(20))
+            'items' =>CompanyResource::collection(Company::paginate(50))
         ]);
         
     }
