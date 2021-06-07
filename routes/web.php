@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -19,13 +22,11 @@ Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::resource('users', UserController::class)->middleware(['auth', 'verified']);
+Route::resource('companies', CompanyController::class)->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

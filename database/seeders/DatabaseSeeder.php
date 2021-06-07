@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $companies = Company::factory(100)->create();
+
+        User::factory(100)->create()
+            ->each(function ($user) use ($companies) {
+                $user->update([
+                    "company_id" => $companies->random()->id
+                ]);
+            });
     }
 }
