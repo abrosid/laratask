@@ -11,6 +11,9 @@
 - Use Laravel’s validation function, using Request classes
 - Create a simple Single Page application that will use Vue.js in order to create a table
 
+#### Restriction:
+1. Use PHP 7 and above
+2. Use Laravel 5.8 and above
 
 ## Instalation
 
