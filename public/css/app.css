@@ -32088,6 +32088,10 @@ select {
   --tw-backdrop-sepia: sepia(100%);
 }
 
+th, td{
+  padding: 0.25rem 0.5rem;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -187942,4 +187946,5 @@ select {
     --tw-backdrop-sepia: sepia(100%);
   }
 }
+
 
