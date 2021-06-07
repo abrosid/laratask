@@ -6,18 +6,19 @@ use App\Http\Resources\CompanyResource;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        return Inertia::render('Companies', [
-            'items' =>CompanyResource::collection(Company::all())
+        return Inertia::render('Companies/Index', [
+            'items' =>CompanyResource::collection(Company::paginate(20))
         ]);
         
     }
@@ -85,6 +86,6 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

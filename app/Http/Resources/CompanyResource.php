@@ -23,8 +23,9 @@ class CompanyResource extends JsonResource
             'email' => $this->email,
             'logo_url' => $this->logo_url,
             'website' => $this->website,
-            'users'=>$this->users(),
             'usersCount' => User::where('company_id', $this->id)->count()
         ];
     }
+
+    
 }

@@ -5,20 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Resources\UserReasource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
 
-        return Inertia::render('Users', [
-            'items' => UserReasource::collection(User::all())
+        return Inertia::render('Users/Index', [
+            'items' => UserReasource::collection(User::paginate(20))
         ]);
         
     }
@@ -86,6 +88,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user=User::find($id);
+        $user->delete();
+
+        return Redirect::back()->with('success', 'User deleted.');
     }
 }

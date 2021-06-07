@@ -10,6 +10,12 @@ class Company extends Model
     use HasFactory;
 
 
+    /**
+     * The attributes that should be visible in arrays.
+     *
+     * @var array
+     */
+    protected $visible = ['name', 'email', 'logo_url', 'website'];
 
     public function users()
     {

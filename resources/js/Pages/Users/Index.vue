@@ -50,13 +50,6 @@ export default {
   components: {
     BreezeAuthenticatedLayout,
   },
-  //   data() {
-  //     return {
-  //       items: [],
-  //       loading: true,
-  //       errored: false,
-  //     };
-  //   },
   props: {
     auth: Object,
     errors: Object,
