@@ -27,5 +27,25 @@ class CompanyResource extends JsonResource
         ];
     }
 
-    
+
+    /**
+     * 
+     * 
+     * @return array
+     */
+    public static function keyValue()
+    {
+
+        $arr = [];
+        $all = Company::all();
+
+        foreach ($all as $one) {
+            $arr[] = [
+                'key' => $one->id,
+                'value' => $one->name,
+            ];
+        }
+
+        return $arr;
+    }
 }

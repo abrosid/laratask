@@ -62,6 +62,34 @@
                   v-model="form.password"
                 />
               </div>
+              <div class="mt-4">
+                <breeze-label for="company_id" value="Company" />
+                <select
+                  id="company_id"
+                  v-model="form.company_id"
+                  class="
+                    border-gray-300
+                    focus:border-indigo-300
+                    focus:ring focus:ring-indigo-200 focus:ring-opacity-50
+                    rounded-md
+                    shadow-sm
+                    mt-1
+                    block
+                    w-full
+                  "
+                >
+                  <option :value="null">Select Company</option>
+
+                  <option
+                    v-for="option in this.companies"
+                    :key="option.key"
+                    :value="option.key"
+                  >
+                    {{ option.value }}
+                  </option>
+                </select>
+              </div>
+
               <div class="flex items-center justify-between mt-4">
                 <inertia-link
                   :href="route('users.index')"
@@ -106,6 +134,7 @@ export default {
     auth: Object,
     errors: Object,
     user: Object,
+    companies: Array,
   },
 
   data() {
@@ -116,6 +145,7 @@ export default {
         email: this.user.data.email,
         phone: this.user.data.phone,
         password: "",
+        company_id: this.user.data.company_id,
       }),
     };
   },

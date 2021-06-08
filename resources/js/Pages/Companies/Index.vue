@@ -39,7 +39,11 @@
                   </inertia-link>
                 </td>
                 <td>{{ item.email }}</td>
-                <td>{{ item.website }}</td>
+                <td>
+                  <a :href="item.website" class="text-blue-500" target="_blank">
+                    {{ item.website }}
+                  </a>
+                </td>
                 <td>
                   {{ item.usersCount }}
                 </td>

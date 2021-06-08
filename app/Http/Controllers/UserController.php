@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CompanyResource;
 use App\Http\Resources\UserReasource;
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
 use Inertia\Response;
+use Symfony\Component\ErrorHandler\Debug;
 
 class UserController extends Controller
 {
@@ -34,7 +36,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Users/Create');
+        $companyArr = CompanyResource::keyValue();
+        return Inertia::render('Users/Create', [
+            "companies"=>$companyArr
+        ]);
     }
 
     /**
@@ -50,6 +55,7 @@ class UserController extends Controller
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', Password::defaults()],
+            'company_id'=>['nullable']
         ]);
 
         $user = User::create([
@@ -58,6 +64,7 @@ class UserController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
+            'company_id'=>$request->company_id
         ]);
 
         return Redirect::route('users.index');
@@ -77,13 +84,19 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
     {
+
+        $companies = Company::all();
+
+        $companyArr = CompanyResource::keyValue();
+        
         return Inertia::render('Users/Edit', [
-            "user" => new UserReasource($user)
+            "user" => new UserReasource($user),
+            "companies" => $companyArr
         ]);
     }
 
@@ -103,11 +116,19 @@ class UserController extends Controller
             'email' => ['required', 'max:255', 'email', Rule::unique('users')->ignore($id)],
             'phone' => ['nullable', 'max:25'],
             'password' => ['nullable'],
+            'company_id' => ['nullable']
         ]);
 
         $user = User::find($id);
+        var_dump($request->company_id);
         if ($user) {
-            $user->update(FacadesRequest::only('firstname', 'lastname', 'email', 'phone'));
+            $user->update([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'company_id' => $request->company_id ?? null
+            ]);
 
             if ($request->get('password')) {
                 $user->update(['password' => Hash::make($request->get('password'))]);
