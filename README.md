@@ -11,13 +11,17 @@
 - Use Laravel’s validation function, using Request classes
 - Create a simple Single Page application that will use Vue.js in order to create a table
 
+#### Restriction:
+1. Use PHP 7 and above
+2. Use Laravel 5.8 and above
 
 ## Instalation
 
-1. clone
-2. `composer install`
-3. `npm i`
-4. create .env file
-5. `php artisan sail:install`
+1. `git clone https://github.com/abrosid/laratask.git`
+2. `cd laratask`
+3. `composer install`
+4. `npm i`
+5. create .env file
+6. `php artisan sail:install`
 
 
