@@ -6,63 +6,64 @@
       </h2>
     </template>
 
-    <div class="py-12">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-          <div class="p-6 bg-white border-b border-gray-200">
-            Companies list
-          </div>
-
-          <table class="w-full table-auto">
-            <thead
-              class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
-            >
-              <tr>
-                <th class="py-3 px-6 text-left">Name</th>
-                <th class="py-3 px-6 text-center">Email</th>
-                <th class="py-3 px-6 text-center">Website</th>
-                <th class="py-3 px-6 text-center">Users</th>
-                <th class="py-3 px-6 text-center"></th>
-              </tr>
-            </thead>
-            <tbody class="text-center">
-              <tr v-for="item in items.data" :key="item.id" class="border-b">
-                <td class="py-3 px-6 text-left">
-                  <inertia-link
-                    :href="route('companies.edit', item.id)"
-                    class="text-blue-500"
-                  >
-                    <div class="mr-2 float-left">
-                      <img v-bind:src="item.logo_url" />
-                    </div>
-                    <span>{{ item.name }}</span>
-                  </inertia-link>
-                </td>
-                <td>{{ item.email }}</td>
-                <td>
-                  <a :href="item.website" class="text-blue-500" target="_blank">
-                    {{ item.website }}
-                  </a>
-                </td>
-                <td>
-                  {{ item.usersCount }}
-                </td>
-                <td>
-                  <button
-                    class="text-red-600 hover:underline"
-                    tabindex="-1"
-                    type="button"
-                    @click="destroy(item)"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 bg-white border-b border-gray-200">
+          Companies list
+          <inertia-link class="float-right" :href="route('companies.create')">
+            Create a company
+          </inertia-link>
         </div>
-        <pagination class="mt-6" :links="items.meta.links" />
+
+        <table class="w-full table-auto">
+          <thead
+            class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
+          >
+            <tr>
+              <th class="py-3 px-6 text-left">Name</th>
+              <th class="py-3 px-6 text-center">Email</th>
+              <th class="py-3 px-6 text-center">Website</th>
+              <th class="py-3 px-6 text-center">Users</th>
+              <th class="py-3 px-6 text-center"></th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr v-for="item in items.data" :key="item.id" class="border-b">
+              <td class="py-3 px-6 text-left">
+                <inertia-link
+                  :href="route('companies.edit', item.id)"
+                  class="text-blue-500"
+                >
+                  <div class="mr-2 float-left">
+                    <img v-bind:src="item.logo_url" />
+                  </div>
+                  <span>{{ item.name }}</span>
+                </inertia-link>
+              </td>
+              <td>{{ item.email }}</td>
+              <td>
+                <a :href="item.website" class="text-blue-500" target="_blank">
+                  {{ item.website }}
+                </a>
+              </td>
+              <td>
+                {{ item.usersCount }}
+              </td>
+              <td>
+                <button
+                  class="text-red-600 hover:underline"
+                  tabindex="-1"
+                  type="button"
+                  @click="destroy(item)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+      <pagination class="py-6" :links="items.meta.links" />
     </div>
   </breeze-authenticated-layout>
 </template>
