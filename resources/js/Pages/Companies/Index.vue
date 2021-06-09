@@ -24,6 +24,7 @@
               <th class="py-3 px-6 text-center">Email</th>
               <th class="py-3 px-6 text-center">Website</th>
               <th class="py-3 px-6 text-center">Users</th>
+              <th class="py-3 px-6 text-center">Updated</th>
               <th class="py-3 px-6 text-center"></th>
             </tr>
           </thead>
@@ -48,6 +49,9 @@
               </td>
               <td>
                 {{ item.usersCount }}
+              </td>
+              <td>
+                {{ item.updated_at }}
               </td>
               <td>
                 <button

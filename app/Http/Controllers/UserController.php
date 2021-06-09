@@ -7,6 +7,7 @@ use App\Http\Resources\UserReasource;
 use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
@@ -25,7 +26,7 @@ class UserController extends Controller
     public function index()
     {
         return Inertia::render('Users/Index', [
-            'items' => UserReasource::collection(User::paginate(50))
+            'items' => UserReasource::collection(User::orderByDesc('updated_at')->paginate(50))
         ]);
     }
 
@@ -38,7 +39,7 @@ class UserController extends Controller
     {
         $companyArr = CompanyResource::keyValue();
         return Inertia::render('Users/Create', [
-            "companies"=>$companyArr
+            "companies" => $companyArr
         ]);
     }
 
@@ -55,7 +56,7 @@ class UserController extends Controller
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', Password::defaults()],
-            'company_id'=>['nullable']
+            'company_id' => ['nullable']
         ]);
 
         $user = User::create([
@@ -64,7 +65,7 @@ class UserController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
-            'company_id'=>$request->company_id
+            'company_id' => $request->company_id
         ]);
 
         return Redirect::route('users.index');
@@ -90,10 +91,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
 
-        $companies = Company::all();
-
         $companyArr = CompanyResource::keyValue();
-        
+
         return Inertia::render('Users/Edit', [
             "user" => new UserReasource($user),
             "companies" => $companyArr
@@ -119,8 +118,8 @@ class UserController extends Controller
             'company_id' => ['nullable']
         ]);
 
+      
         $user = User::find($id);
-        var_dump($request->company_id);
         if ($user) {
             $user->update([
                 'firstname' => $request->firstname,

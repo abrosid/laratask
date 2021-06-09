@@ -22,6 +22,7 @@
               <th class="py-3 px-6 text-center">Email</th>
               <th class="py-3 px-6 text-center">Phone</th>
               <th class="py-3 px-6 text-center">Company</th>
+              <th class="py-3 px-6 text-center">Updated</th>
               <th class="py-3 px-6 text-center"></th>
             </tr>
           </thead>
@@ -46,6 +47,7 @@
                   {{ item.company.name }}
                 </span>
               </td>
+              <td>{{ item.updated_at }}</td>
               <td>
                 <button
                   class="text-red-600 hover:underline"
@@ -78,6 +80,7 @@ export default {
     auth: Object,
     errors: Object,
     items: Object,
+
   },
   methods: {
     destroy(user) {

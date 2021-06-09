@@ -22,7 +22,7 @@ class Company extends Model
      *
      * @var array
      */
-    protected $visible = ['name', 'email', 'logo_url', 'website'];
+    protected $visible = ['name', 'email', 'logo_url', 'website', 'updated_at'];
 
     public function users()
     {

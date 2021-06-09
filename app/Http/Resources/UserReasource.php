@@ -22,6 +22,7 @@ class UserReasource extends JsonResource
             'lastname' => $this->lastname,
             'email' => $this->email,
             'phone' => $this->phone,
+            'updated_at' => $this->updated_at->format('d.m.Y H:i:s'),
             'company_id' => $this->company_id,
             'company' => new CompanyResource(Company::find($this->company_id))
         ];

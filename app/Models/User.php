@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
-        'company_id'
+        'company_id',
     ];
 
     /**
@@ -41,7 +41,14 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $visible = ['firstname', 'lastname', 'email', 'phone', 'company_id'];
+    protected $visible = [
+        'firstname',
+        'lastname',
+        'email',
+        'phone',
+        'company_id',
+        // 'updated_at'
+    ];
 
     /**
      * The attributes that should be cast to native types.
@@ -54,7 +61,8 @@ class User extends Authenticatable
 
 
 
-    public function company(){
+    public function company()
+    {
         return $this->belongsTo(Company::class, 'company_id');
     }
 }

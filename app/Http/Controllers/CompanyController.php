@@ -20,7 +20,7 @@ class CompanyController extends Controller
     public function index()
     {
         return Inertia::render('Companies/Index', [
-            'items' => CompanyResource::collection(Company::paginate(50))
+            'items' => CompanyResource::collection(Company::orderByDesc('updated_at')->paginate(50))
         ]);
     }
 
