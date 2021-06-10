@@ -7,6 +7,7 @@ use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request as FacadesRequest;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -42,19 +43,25 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'logo_url' => ['nullable', 'max:255'],
-            'website' => ['nullable', 'max:255'],
+            'logo' => 'nullable|image',
+            'website' => 'nullable|max:255',
         ]);
 
         $company = Company::create([
             'name' => $request->name,
             'email' => $request->email,
-            'logo_url' => $request->logo_url,
             'website' => $request->website
         ]);
+
+        if ($request->file('logo')) {
+            $company->update([
+                'logo_url' =>  $request->file('logo')->store('public')
+            ]);
+        }
 
         return Redirect::route('companies.index');
     }
@@ -86,44 +93,52 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param  Company  $company
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Company $company, Request $request)
     {
+
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => ['required', 'max:255', 'email'],
-            'logo_url' => ['nullable', 'max:255'],
-            'website' => ['nullable'], 'max:255',
+            'email' => 'required|string|email|max:255',
+            'logo' => 'nullable|image',
+            'website' => 'nullable|max:255',
         ]);
 
-        $company = Company::find($id);
-        if ($company) {
+        $company->update(FacadesRequest::only('name', 'email', 'website'));
+
+        if ($request->file('logo')) {
+            if ($company->logo_url) {
+                Storage::delete($company->logo_url);
+            }
+
             $company->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'logo_url' => $request->logo_url,
-                'website' => $request->website
+                'logo_url' =>  $request->file('logo')->store('public')
             ]);
         }
 
+
+        // return Redirect::back()->with('success', 'User updated.');
         return Redirect::route('companies.index');
     }
+
+
+
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Company $company)
     {
-        $company = Company::find($id);
-        if ($company) {
-            $company->delete();
-        }
+
+        Storage::delete($company->logo_url);
+
+        $company->delete();
 
 
         return Redirect::route('companies.index');

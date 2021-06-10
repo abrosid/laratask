@@ -17,35 +17,45 @@
 
         <table class="w-full table-auto">
           <thead
-            class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
+            class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal text-left"
           >
             <tr>
-              <th class="py-3 px-6 text-left">Name</th>
-              <th class="py-3 px-6 text-center">Email</th>
-              <th class="py-3 px-6 text-center">Website</th>
-              <th class="py-3 px-6 text-center">Users</th>
-              <th class="py-3 px-6 text-center">Updated</th>
-              <th class="py-3 px-6 text-center"></th>
+              <th class="py-3">Logo</th>
+              <th class="py-3">Company</th>
+              <th class="py-3">Users</th>
+              <th class="py-3">Updated</th>
+              <th class="py-3"></th>
             </tr>
           </thead>
-          <tbody class="text-center">
+          <tbody class="text-left">
             <tr v-for="item in items.data" :key="item.id" class="border-b">
-              <td class="py-3 px-6 text-left">
+              <td class="py-3 px-6 w-32">
                 <inertia-link
                   :href="route('companies.edit', item.id)"
                   class="text-blue-500"
                 >
                   <div class="mr-2 float-left">
-                    <img v-bind:src="item.logo_url" />
+                    <img
+                      class="object-cover h-32 w-32"
+                      v-bind:src="item.logo_url"
+                    />
                   </div>
-                  <span>{{ item.name }}</span>
                 </inertia-link>
               </td>
-              <td>{{ item.email }}</td>
               <td>
-                <a :href="item.website" class="text-blue-500" target="_blank">
-                  {{ item.website }}
-                </a>
+                <inertia-link
+                  :href="route('companies.edit', item.id)"
+                  class="text-blue-500"
+                >
+                  {{ item.name }}
+                </inertia-link>
+                <div v-if="item.email">Email: {{ item.email }}</div>
+                <div v-if="item.website">
+                  Web:
+                  <a :href="item.website" class="text-blue-500" target="_blank">
+                    {{ item.website }}
+                  </a>
+                </div>
               </td>
               <td>
                 {{ item.usersCount }}

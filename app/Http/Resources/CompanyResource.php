@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyResource extends JsonResource
 {
@@ -21,7 +22,7 @@ class CompanyResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'logo_url' => $this->logo_url,
+            'logo_url' => $this->logo_url?Storage::url($this->logo_url):null,
             'website' => $this->website,
             'updated_at' => $this->updated_at->format('d.m.Y H:i:s'),
             'usersCount' => User::where('company_id', $this->id)->count()

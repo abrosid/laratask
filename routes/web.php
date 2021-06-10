@@ -27,5 +27,5 @@ Route::any('/', function () {
 Route::resource('users', UserController::class)->middleware(['auth', 'verified']);
 Route::resource('companies', CompanyController::class)->middleware(['auth', 'verified']);
 
-require __DIR__.'/auth.php';
 
+require __DIR__ . '/auth.php';

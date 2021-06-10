@@ -32,15 +32,7 @@
                 required
               />
             </div>
-            <div class="mt-4">
-              <breeze-label for="logo" value="Logo" />
-              <breeze-input
-                id="logo"
-                type="text"
-                class="mt-1 block w-full"
-                v-model="form.logo_url"
-              />
-            </div>
+
             <div class="mt-4">
               <breeze-label for="website" value="Website" />
               <breeze-input
@@ -50,7 +42,31 @@
                 v-model="form.website"
               />
             </div>
-            <div class="flex items-center justify-between mt-4">
+            <div class="mt-4">
+              <breeze-label for="logo" value="Logo" />
+              <div class="flex">
+                <breeze-input
+                  id="logo"
+                  type="file"
+                  class="mt-1 block w-full border p-2"
+                  accept="image/*"
+                  ref="file"
+                  @change="preview"
+                />
+                <breeze-button type="button" class="m-2" @click="clearFile">
+                  Clear
+                </breeze-button>
+              </div>
+            </div>
+            <div class="mt-4">
+              <img
+                v-if="logoPreview"
+                :src="logoPreview"
+                class="object-cover h-32 w-32"
+              />
+            </div>
+
+            <div class="flex items-center justify-between mt-4 border-t pt-4">
               <inertia-link
                 :href="route('companies.index')"
                 class="underline text-sm text-gray-600 hover:text-gray-900"
@@ -78,6 +94,7 @@ import BreezeButton from "@/Components/Button";
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated";
 import BreezeInput from "@/Components/Input";
 import BreezeLabel from "@/Components/Label";
+import FileInput from "@/Components/FileInput";
 import BreezeValidationErrors from "@/Components/ValidationErrors";
 
 export default {
@@ -85,6 +102,7 @@ export default {
     BreezeButton,
     BreezeInput,
     BreezeLabel,
+    FileInput,
     BreezeValidationErrors,
     BreezeAuthenticatedLayout,
   },
@@ -97,18 +115,32 @@ export default {
 
   data() {
     return {
+      logoPreview: this.company.data.logo_url,
       form: this.$inertia.form({
+        _method: 'put',
         name: this.company.data.name,
         email: this.company.data.email,
-        logo_url: this.company.data.logo_url,
+        logo: null,
         website: this.company.data.website,
       }),
     };
   },
 
   methods: {
+    clearFile() {
+      this.form.reset("logo");
+      this.logoPreview = null;
+    },
+    preview(e) {
+      this.form.logo = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.logoPreview = e.target.result;
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    },
     update() {
-      this.form.put(this.route("companies.update", this.company.data.id));
+      this.form.post(this.route("companies.update", this.company.data.id));
     },
   },
 };

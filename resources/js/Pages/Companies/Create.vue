@@ -32,15 +32,7 @@
                 required
               />
             </div>
-            <div class="mt-4">
-              <breeze-label for="logo" value="Logo" />
-              <breeze-input
-                id="logo"
-                type="text"
-                class="mt-1 block w-full"
-                v-model="form.logo_url"
-              />
-            </div>
+
             <div class="mt-4">
               <breeze-label for="website" value="Website" />
               <breeze-input
@@ -48,6 +40,30 @@
                 type="text"
                 class="mt-1 block w-full"
                 v-model="form.website"
+              />
+            </div>
+
+            <div class="mt-4">
+              <breeze-label for="logo" value="Logo" />
+              <div class="flex">
+                <breeze-input
+                  id="logo"
+                  type="file"
+                  class="mt-1 block w-full border p-2"
+                  accept="image/*"
+                  ref="file"
+                  @change="preview"
+                />
+                <breeze-button type="button" class="m-2" @click="clearFile">
+                  Clear
+                </breeze-button>
+              </div>
+            </div>
+            <div class="mt-4">
+              <img
+                v-if="logoPreview"
+                :src="logoPreview"
+                class="object-cover h-32 w-32"
               />
             </div>
             <div class="flex items-center justify-between mt-4">
@@ -96,17 +112,35 @@ export default {
 
   data() {
     return {
+      logoPreview: null,
       form: this.$inertia.form({
         name: "",
         email: "",
-        logo_url: "",
+        logo: "",
         website: "",
       }),
     };
   },
 
   methods: {
+    clearFile() {
+      this.form.reset("logo");
+      this.logoPreview = null;
+    },
+    preview(e) {
+      this.form.logo = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.logoPreview = e.target.result;
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    },
     submit() {
+      // var fd = new FormData();
+      // fd.append("name", this.form.name);
+      // fd.append("email", this.form.email);
+      // fd.append("website", this.form.website);
+      // fd.append("logo", this.form.logo);
       this.form.post(this.route("companies.store"));
     },
   },
