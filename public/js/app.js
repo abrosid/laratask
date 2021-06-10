@@ -17943,7 +17943,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS, HYDRATE_EVENTS */
   , ["accept"]), !$props.value ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
     type: "button",
-    "class": "\n            border-gray-300\n            focus:border-indigo-300\n            focus:ring focus:ring-indigo-200 focus:ring-opacity-50\n            rounded-md\n            shadow-sm\n          ",
+    "class": "\r\n            border-gray-300\r\n            focus:border-indigo-300\r\n            focus:ring focus:ring-indigo-200 focus:ring-opacity-50\r\n            rounded-md\r\n            shadow-sm\r\n          ",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.browse && $options.browse.apply($options, arguments);
     })
@@ -17953,7 +17953,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
     type: "button",
-    "class": "\n            px-4\n            py-1\n            bg-gray-500\n            hover:bg-gray-700\n            rounded-sm\n            text-xs\n            font-medium\n            text-white\n          ",
+    "class": "\r\n            px-4\r\n            py-1\r\n            bg-gray-500\r\n            hover:bg-gray-700\r\n            rounded-sm\r\n            text-xs\r\n            font-medium\r\n            text-white\r\n          ",
     onClick: _cache[3] || (_cache[3] = function () {
       return $options.remove && $options.remove.apply($options, arguments);
     })
@@ -20033,7 +20033,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
           return $data.form.company_id = $event;
         }),
-        "class": "\n                  border-gray-300\n                  focus:border-indigo-300\n                  focus:ring focus:ring-indigo-200 focus:ring-opacity-50\n                  rounded-md\n                  shadow-sm\n                  mt-1\n                  block\n                  w-full\n                "
+        "class": "\r\n                  border-gray-300\r\n                  focus:border-indigo-300\r\n                  focus:ring focus:ring-indigo-200 focus:ring-opacity-50\r\n                  rounded-md\r\n                  shadow-sm\r\n                  mt-1\r\n                  block\r\n                  w-full\r\n                "
       }, [_hoisted_9, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_this.companies, function (option) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
           key: option.key,
@@ -20242,7 +20242,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
           return $data.form.company_id = $event;
         }),
-        "class": "\n                  border-gray-300\n                  focus:border-indigo-300\n                  focus:ring focus:ring-indigo-200 focus:ring-opacity-50\n                  rounded-md\n                  shadow-sm\n                  mt-1\n                  block\n                  w-full\n                "
+        "class": "\r\n                  border-gray-300\r\n                  focus:border-indigo-300\r\n                  focus:ring focus:ring-indigo-200 focus:ring-opacity-50\r\n                  rounded-md\r\n                  shadow-sm\r\n                  mt-1\r\n                  block\r\n                  w-full\r\n                "
       }, [_hoisted_9, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_this.companies, function (option) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
           key: option.key,

@@ -110,14 +110,21 @@ class CompanyController extends Controller
         $company->update(FacadesRequest::only('name', 'email', 'website'));
 
         if ($request->file('logo')) {
-            if ($company->logo_url) {
+            if (Storage::exists($company->logo_url)) {
                 Storage::delete($company->logo_url);
             }
 
             $company->update([
                 'logo_url' =>  $request->file('logo')->store('public')
             ]);
+        } elseif (Storage::exists($company->logo_url)) {
+            Storage::delete($company->logo_url);
+            $company->update([
+                'logo_url' =>  null
+            ]);
         }
+
+
 
 
         // return Redirect::back()->with('success', 'User updated.');
