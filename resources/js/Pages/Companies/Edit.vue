@@ -43,7 +43,7 @@
               />
             </div>
             <div class="mt-4">
-              <breeze-label for="logo" value="Logo" />
+              <breeze-label class="" for="logo" value="Logo" />
               <div class="flex">
                 <breeze-input
                   id="logo"
@@ -53,17 +53,13 @@
                   ref="file"
                   @change="preview"
                 />
-                <breeze-button type="button" class="m-2" @click="clearFile">
-                  Clear
-                </breeze-button>
               </div>
             </div>
-            <div class="mt-4">
-              <img
-                v-if="logoPreview"
-                :src="logoPreview"
-                class="object-cover h-32 w-32"
-              />
+            <div class="mt-4" v-if="logoPreview">
+              <img :src="logoPreview" class="object-cover h-32 w-32" />
+              <breeze-button type="button" class="my-2" @click="clearFile">
+                Remove logo
+              </breeze-button>
             </div>
 
             <div class="flex items-center justify-between mt-4 border-t pt-4">
@@ -117,9 +113,10 @@ export default {
     return {
       logoPreview: this.company.data.logo_url,
       form: this.$inertia.form({
-        _method: 'put',
+        _method: "put",
         name: this.company.data.name,
         email: this.company.data.email,
+        logo_url: this.company.data.logo_url,
         logo: null,
         website: this.company.data.website,
       }),
@@ -130,6 +127,8 @@ export default {
     clearFile() {
       this.form.reset("logo");
       this.logoPreview = null;
+      this.form.logo=null;
+      document.getElementById('logo').value="";
     },
     preview(e) {
       this.form.logo = e.target.files[0];
