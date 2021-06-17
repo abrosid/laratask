@@ -89,16 +89,41 @@ To run the tests, run:
 php artisan test
 ```
 
+In yor browser link to `localhost:8000`
 
-#### Option2: using docker
+
+#### Option2: using Sail/docker and mysql
 
 
-Using sail and mysql database.
+Configuring database via sail
 
 ```sh
 php artisan sail:install
 ```
+
 press 0 to install mysql
+
+
+Run sail as daemon
+
+```sh
+./vendor/bin/sail up -d
+```
+
+Run database migrations:
+
+```sh
+./vendor/bin/sail artisan migrate:fresh
+```
+
+Run database seeder:
+
+```sh
+./vendor/bin/sail artisan db:seed
+```
+
+In yor browser link to `localhost`
+
 
 
 
