@@ -47,9 +47,18 @@ npm run dev
 
 Setup configuration:
 
+- for sqlite
+
+```sh
+cp .env.sqlite .env
+```
+
+- for mysql 
+
 ```sh
 cp .env.example .env
 ```
+
 
 Generate application key:
 
@@ -57,7 +66,8 @@ Generate application key:
 php artisan key:generate
 ```
 
-#### Option 1:  running locally
+
+### Option 1: running locally with sqlite
 
 Create an SQLite database. 
 
@@ -98,8 +108,7 @@ php artisan test
 In your browser link to `localhost:8000`
 
 
-#### Option2: using Sail/docker and mysql
-
+### Option 2: using Sail/docker with mysql
 
 Configuring database via sail
 
