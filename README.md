@@ -77,6 +77,12 @@ Run database seeder:
 php artisan db:seed
 ```
 
+Create symlink for storage
+
+```sh
+php artisan storage:link
+```
+
 Run the dev server (the output will give the address):
 
 ```sh
@@ -120,6 +126,12 @@ Run database seeder:
 
 ```sh
 ./vendor/bin/sail artisan db:seed
+```
+
+Create symlink for storage
+
+```sh
+./vendor/bin/sail artisan storage:link
 ```
 
 In your browser link to `localhost`
