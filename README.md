@@ -68,7 +68,7 @@ touch database/database.sqlite
 Run database migrations:
 
 ```sh
-php artisan migrate
+php artisan migrate:fresh
 ```
 
 Run database seeder:
