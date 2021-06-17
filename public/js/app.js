@@ -17472,9 +17472,10 @@ __webpack_require__.r(__webpack_exports__);
     return {
       logoPreview: this.company.data.logo_url,
       form: this.$inertia.form({
-        _method: 'put',
+        _method: "put",
         name: this.company.data.name,
         email: this.company.data.email,
+        logo_url: this.company.data.logo_url,
         logo: null,
         website: this.company.data.website
       })
@@ -17484,6 +17485,8 @@ __webpack_require__.r(__webpack_exports__);
     clearFile: function clearFile() {
       this.form.reset("logo");
       this.logoPreview = null;
+      this.form.logo = null;
+      document.getElementById('logo').value = "";
     },
     preview: function preview(e) {
       var _this = this;
@@ -17943,7 +17946,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS, HYDRATE_EVENTS */
   , ["accept"]), !$props.value ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
     type: "button",
-    "class": "\r\n            border-gray-300\r\n            focus:border-indigo-300\r\n            focus:ring focus:ring-indigo-200 focus:ring-opacity-50\r\n            rounded-md\r\n            shadow-sm\r\n          ",
+    "class": "\n            border-gray-300\n            focus:border-indigo-300\n            focus:ring focus:ring-indigo-200 focus:ring-opacity-50\n            rounded-md\n            shadow-sm\n          ",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.browse && $options.browse.apply($options, arguments);
     })
@@ -17953,7 +17956,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
     type: "button",
-    "class": "\r\n            px-4\r\n            py-1\r\n            bg-gray-500\r\n            hover:bg-gray-700\r\n            rounded-sm\r\n            text-xs\r\n            font-medium\r\n            text-white\r\n          ",
+    "class": "\n            px-4\n            py-1\n            bg-gray-500\n            hover:bg-gray-700\n            rounded-sm\n            text-xs\n            font-medium\n            text-white\n          ",
     onClick: _cache[3] || (_cache[3] = function () {
       return $options.remove && $options.remove.apply($options, arguments);
     })
@@ -19554,12 +19557,13 @@ var _hoisted_7 = {
 var _hoisted_8 = {
   "class": "flex"
 };
-
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Clear ");
-
-var _hoisted_10 = {
+var _hoisted_9 = {
+  key: 0,
   "class": "mt-4"
 };
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Remove logo ");
+
 var _hoisted_11 = {
   "class": "flex items-center justify-between mt-4 border-t pt-4"
 };
@@ -19635,6 +19639,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8
       /* PROPS */
       , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_label, {
+        "class": "",
         "for": "logo",
         value: "Logo"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_input, {
@@ -19646,26 +19651,25 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onChange: $options.preview
       }, null, 8
       /* PROPS */
-      , ["onChange"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button, {
+      , ["onChange"])])]), $data.logoPreview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
+        src: $data.logoPreview,
+        "class": "object-cover h-32 w-32"
+      }, null, 8
+      /* PROPS */
+      , ["src"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button, {
         type: "button",
-        "class": "m-2",
+        "class": "my-2",
         onClick: $options.clearFile
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_9];
+          return [_hoisted_10];
         }),
         _: 1
         /* STABLE */
 
       }, 8
       /* PROPS */
-      , ["onClick"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [$data.logoPreview ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("img", {
-        key: 0,
-        src: $data.logoPreview,
-        "class": "object-cover h-32 w-32"
-      }, null, 8
-      /* PROPS */
-      , ["src"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
+      , ["onClick"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_inertia_link, {
         href: _ctx.route('companies.index'),
         "class": "underline text-sm text-gray-600 hover:text-gray-900"
       }, {
@@ -20033,7 +20037,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
           return $data.form.company_id = $event;
         }),
-        "class": "\r\n                  border-gray-300\r\n                  focus:border-indigo-300\r\n                  focus:ring focus:ring-indigo-200 focus:ring-opacity-50\r\n                  rounded-md\r\n                  shadow-sm\r\n                  mt-1\r\n                  block\r\n                  w-full\r\n                "
+        "class": "\n                  border-gray-300\n                  focus:border-indigo-300\n                  focus:ring focus:ring-indigo-200 focus:ring-opacity-50\n                  rounded-md\n                  shadow-sm\n                  mt-1\n                  block\n                  w-full\n                "
       }, [_hoisted_9, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_this.companies, function (option) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
           key: option.key,
@@ -20242,7 +20246,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
           return $data.form.company_id = $event;
         }),
-        "class": "\r\n                  border-gray-300\r\n                  focus:border-indigo-300\r\n                  focus:ring focus:ring-indigo-200 focus:ring-opacity-50\r\n                  rounded-md\r\n                  shadow-sm\r\n                  mt-1\r\n                  block\r\n                  w-full\r\n                "
+        "class": "\n                  border-gray-300\n                  focus:border-indigo-300\n                  focus:ring focus:ring-indigo-200 focus:ring-opacity-50\n                  rounded-md\n                  shadow-sm\n                  mt-1\n                  block\n                  w-full\n                "
       }, [_hoisted_9, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_this.companies, function (option) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
           key: option.key,
