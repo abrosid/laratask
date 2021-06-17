@@ -89,7 +89,7 @@ To run the tests, run:
 php artisan test
 ```
 
-In yor browser link to `localhost:8000`
+In your browser link to `localhost:8000`
 
 
 #### Option2: using Sail/docker and mysql
@@ -122,7 +122,7 @@ Run database seeder:
 ./vendor/bin/sail artisan db:seed
 ```
 
-In yor browser link to `localhost`
+In your browser link to `localhost`
 
 
 
